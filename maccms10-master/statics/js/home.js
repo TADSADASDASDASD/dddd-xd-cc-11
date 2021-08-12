@@ -336,7 +336,7 @@ var MAC={
         },
         'Submit':function(){
             if($(".gbook_content").val() == ''){
-                MAC.Pop.Msg(100,20,'请输入您的留言!',1000);
+                alert("请输入留言内容");
                 return false;
             }
             $.ajax({
@@ -344,7 +344,7 @@ var MAC={
                 url: maccms.path + '/index.php/gbook/saveData',
                 data: $('.gbook_form').serialize(),
                 success:function($r){
-                    MAC.Pop.Msg(100,20,$r.msg,1000);
+                	alert($r.msg);
                     if($r.code == 1){
                         location.reload();
                     }
@@ -357,8 +357,10 @@ var MAC={
             });
         },
         'Report':function(name){
-            MAC.Pop.Show(400,300,'数据报错',maccms.path+'/index.php/gbook/report?name=' + encodeURIComponent(name),function($r){
-
+            MAC.Pop.Show('#modal-seport',maccms.path+'/index.php/gbook/report?name=' + encodeURIComponent(name),function($r){
+                $('body').on('click', '#gbook_submit', function(e){
+	            	MAC.Gbook.Submit();
+		        });
             });
         }
     },
@@ -413,99 +415,6 @@ var MAC={
             catch(e){}
         }
     },
-    'History': {
-        'BoxShow':0,
-        'Limit':10,
-        'Days':7,
-        'Json':'',
-        'Init':function(){
-            if($('.mac_history').length ==0){
-                return;
-            }
-
-            $('.mac_history').hover(function(e){
-                $('.mac_history_box').show();
-            }, function(){
-                $('.mac_history_box').hover(function(){
-                    MAC.History.BoxShow=1;
-                }, function(){
-                    MAC.History.BoxShow=0;
-                    $('.mac_history_box').hide();
-                });
-            });
-
-            var jsondata = [];
-            if(this.Json){
-                jsondata = this.Json;
-            }else{
-                var jsonstr = MAC.Cookie.Get('mac_history');
-                if(jsonstr != undefined){
-                    jsondata = eval(jsonstr);
-                }
-            }
-
-            html = '<dl class="mac_drop_box mac_history_box" style="display:none;">';
-            html +='<dt><a target="_self" href="javascript:void(0)" onclick="MAC.History.Clear();">清空</a></dt>';
-
-            if(jsondata.length > 0){
-                for($i=0; $i<jsondata.length; $i++){
-                    if($i%2==1){
-                        html +='<dd class="odd">';
-                    }else{
-                        html +='<dd class="even">';
-                    }
-                    html +='<a href="'+jsondata[$i].link+'" class="hx_title">'+jsondata[$i].name+'</a></dd>';
-                }
-            }else{
-                html +='<dd class="hide">暂无浏览记录</dd>';
-            }
-            html += '</dl>';
-
-            $('.mac_history').after(html);
-            var h = $('.mac_history').height();
-            var position = $('.mac_history').position();
-            $('.mac_history_box').css({'left':position.left,'top':(position.top+h)});
-
-
-            if($(".mac_history_set").attr('data-name')){
-                var $that = $(".mac_history_set");
-                MAC.History.Set($that.attr('data-name'),$that.attr('data-link'),$that.attr('data-pic'));
-            }
-        },
-        'Set':function(name,link,pic){
-            if(!link){ link = document.URL; }
-            var jsondata = MAC.Cookie.Get('mac_history');
-
-            if(jsondata != undefined){
-                this.Json = eval(jsondata);
-                for($i=0;$i<this.Json.length;$i++){
-                    if(this.Json[$i].link == link){
-                        return false;
-                    }
-                }
-
-                jsonstr = '{log:[{"name":"'+name+'","link":"'+link+'","pic":"'+pic+'"},';
-                for($i=0; $i<this.Json.length-1; $i++){
-                    if($i<= this.Limit && this.Json[$i]){
-                        jsonstr += '{"name":"'+this.Json[$i].name+'","link":"'+this.Json[$i].link+'","pic":"'+this.Json[$i].pic+'"},';
-                    }else{
-                        break;
-                    }
-                }
-                jsonstr = jsonstr.substring(0,jsonstr.lastIndexOf(','));
-                jsonstr += "]}";
-            }else{
-                jsonstr = '{log:[{"name":"'+name+'","link":"'+link+'","pic":"'+pic+'"}]}';
-            }
-            this.Json = eval(jsonstr);
-            MAC.Cookie.Set('mac_history',jsonstr,this.Days);
-        },
-        'Clear': function(){
-            MAC.Cookie.Del('mac_history');
-            $('.mac_history_box').html('<li class="hx_clear">已清空观看记录。</li>');
-        },
-    },
-
     'Ulog':{
         'Init':function(){
             MAC.Ulog.Set();
@@ -539,7 +448,7 @@ var MAC={
             $('body').on('click', 'a.mac_ulog', function(e){
                 //是否需要验证登录
                 if(MAC.User.IsLogin == 0){
-                    alert('您还没有登录哦！');
+                    MAC.User.Login();
                     return;
                 }
 
@@ -550,7 +459,7 @@ var MAC={
                         cache: false,
                         dataType: 'json',
                         success: function($r){
-                            alert('收藏成功');
+                            alert($r.msg);
                             if($r.code == 1){
                                 $that.addClass('disabled');
                             }else{
@@ -571,7 +480,11 @@ var MAC={
         'GroupName':'',
         'Portrait':'',
         'Init':function(){
-                   
+            if($('.mac_user').length >0){
+                $('body').on('click', '.mac_user', function(e){
+                    MAC.User.Login();
+                });              
+            } 
 
             if(MAC.Cookie.Get('user_id') !=undefined && MAC.Cookie.Get('user_id')!=''){
                 var url = maccms.path + '/index.php/user';
@@ -581,23 +494,14 @@ var MAC={
                 MAC.User.GroupName = MAC.Cookie.Get('group_name');
                 MAC.User.Portrait = MAC.Cookie.Get('user_portrait');
                 MAC.User.IsLogin = 1;
-
-                if($('.mac_user').prop("outerHTML").substr(0,2)=='<a'){
-                    $('.mac_user').attr('href',url);
-                    $('.mac_user').text(MAC.User.UserName);
-                }
-                else{
-                    //$('.mac_user').html('<a class="mac_text" href="'+ url +'">'+ name +'</a>');
-                }
-
-                var html = '<div class="mac_drop_box mac_user_box" style="display: none;">';
-                html+='<ul class="logged"><li><a target="_blank" href="'+url+'">用户中心</a></li><li class="logout"><a class="logoutbt" href="javascript:;" onclick="MAC.User.Logout();" target="_self"><i class="user-logout"></i>退出</a></li></ul>'
-
-                $('.mac_user').after(html);
-                var h = $('.mac_user').height();
-                var position = $('.mac_user').position();
-                $('.mac_user_box').css({'left':position.left,'top':(position.top+h)});
-
+                
+                $('.mac_user').removeClass('mac_user').attr('href',url);
+                
+                $('.user_name').show().find('.name').text(MAC.User.UserName);
+                
+                $('.user_url').show().attr('href',url);
+                
+                $('.user_img').show().attr('src',MAC.User.Portrait);
             }
             else{
 
@@ -614,14 +518,13 @@ var MAC={
             if(MAC.Cookie.Get('user_id') !=undefined && MAC.Cookie.Get('user_id')!=''){
                 ac= 'ajax_info';
             }
-            MAC.Pop.Show(400,380,'用户登录',maccms.path+'/index.php/user/'+ac,function($r){
-                $('body').on('click', '.login_form_submit', function(e){
+            MAC.Pop.Show('#modal-login',maccms.path+'/index.php/user/'+ac,function($r){
+                $('body').on('click', '#login_form_submit', function(e){
                     $.ajax({
                         type: 'POST',
                         url: maccms.path + '/index.php/user/login',
                         data: $('.mac_login_form').serialize(),
                         success:function($r){
-                            alert($r.msg);
                             if($r.code == 1){
                                 location.reload();
                             }
@@ -645,7 +548,7 @@ var MAC={
         'PopedomCallBack':function(trysee,h) {
             window.setTimeout(function(){
                 $(window.frames["player_if"].document).find(".MacPlayer").html(h);
-            },1000*10*trysee);
+            },1000*60*trysee);
         },
         'BuyPopedom':function(o){
             var $that = $(o);
@@ -671,58 +574,20 @@ var MAC={
         }
     },
     'Pop':{
-        'Remove':function(){
-            $('.mac_pop_bg').remove();
-            $('.mac_pop').remove();
-        },
-        'RemoveMsg':function(){
-            $('.mac_pop_msg_bg').remove();
-            $('.mac_pop_msg').remove();
-        },
-        'Msg':function($w,$h,$msg,$timeout){
-            if($('.mac_pop_bg').length !=1) {
-                MAC.Pop.Remove();
-            }
-            $('body').append('<div class="mac_pop_msg_bg"></div><div class="mac_pop_msg"><div class="pop-msg"></div></div>');
-            $('.mac_pop_msg .pop_close').click(function(){
-                $('.mac_pop_msg').remove();
-            });
-
-            $('.mac_pop_msg').width($w);
-            $('.mac_pop_msg').height($h);
-            $('.mac_pop_msg .pop-msg').html($msg);
-            $('.mac_pop_msg_bg,.mac_pop_msg').show();
-            setTimeout(MAC.Pop.RemoveMsg,$timeout);
-        },
-        'Show':function($w,$h,$title,$url,$callback) {
-            if($('.mac_pop_bg').length !=1) {
-                MAC.Pop.Remove();
-            }
-
-            $('body').append('<div class="mac_pop_bg"></div><div class="mac_pop"><div class="pop_top"><h2></h2><span class="pop_close">Ｘ</span></div><div class="pop_content"></div></div>');
-            $('.mac_pop .pop_close').click(function(){
-                $('.mac_pop_bg,.mac_pop').remove();
-            });
-
-            $('.mac_pop').width($w);
-            $('.mac_pop').height($h);
-            $('.pop_content').html('');
-            $('.pop_top').find('h2').html($title);
-
+        'Show':function($modalid,$url,$callback) {          
             $.ajax({
                 type: 'post',
                 url: $url,
                 timeout: 3000,
                 error: function(){
-                    $(".pop_content").html('加载失败，请刷新...');
+                   $('body').append(alert("加载失败，请刷新"));
                 },
                 success:function($r){
-                    $(".pop_content").html($r);
+                    $('body').append($r);
+                    $($modalid).modal('show');
                     $callback($r);
                 }
             });
-
-            $('.mac_pop_bg,.mac_pop').show();
         }
     },
     'AdsWrap':function(w,h,n){
@@ -880,9 +745,6 @@ var MAC={
 }
 
 $(function(){
-    //定时任务初始化
-    //MAC.Timming();
-
     //自动跳转手机和pc网页地址
     MAC.Adaptive();
     //验证码初始化
@@ -891,8 +753,6 @@ $(function(){
     MAC.PageGo.Init();
     //用户部分初始化
     MAC.User.Init();
-
-
     //顶和踩初始化
     MAC.Digg.Init();
     //评分初始化
@@ -901,12 +761,10 @@ $(function(){
     MAC.Star.Init();
     //点击数量
     MAC.Hits.Init();
-
     //历史记录初始化
-    MAC.History.Init();
-    //用户访问记录初始化
     MAC.Ulog.Init();
-
     //联想搜索初始化
     MAC.Suggest.Init('.mac_wd',1,'');
+    //定时任务初始化
+    MAC.Timming();
 });
