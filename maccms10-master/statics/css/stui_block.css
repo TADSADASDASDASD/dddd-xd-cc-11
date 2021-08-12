@@ -305,6 +305,9 @@ textarea.form-control{ height: auto;}
 /* bootstrap.js */
 .fade{opacity: 0;-webkit-transition: opacity .15s linear;-o-transition: opacity .15s linear;transition: opacity .15s linear;}
 .fade.in{opacity: 1;}
+.collapse{ display: none;}
+.collapse.in{ display: block;}
+.collapsing{position:relative;height:0;overflow:hidden;-webkit-transition-timing-function:ease;-o-transition-timing-function:ease;transition-timing-function:ease;-webkit-transition-duration:.35s;-o-transition-duration:.35s;transition-duration:.35s;-webkit-transition-property:height,visibility;-o-transition-property:height,visibility;transition-property:height,visibility}
 .tab-content>.tab-pane,.carousel-inner>.item{ display: none;}
 .tab-content>.tab-pane.active,.carousel-inner>.item.active{ display: block;}
 .dropdown{ position: relative;}

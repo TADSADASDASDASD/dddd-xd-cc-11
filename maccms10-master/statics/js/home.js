@@ -297,8 +297,8 @@ var MAC={
                                 }
                             }
                             else{
-                                $that.attr('title', $r.msg);
-                            }
+                                alert($r.msg);
+                            }                           
                         }
                     });
                 }
@@ -525,6 +525,7 @@ var MAC={
                         url: maccms.path + '/index.php/user/login',
                         data: $('.mac_login_form').serialize(),
                         success:function($r){
+                        	alert($r.msg)
                             if($r.code == 1){
                                 location.reload();
                             }
@@ -555,7 +556,7 @@ var MAC={
             if($that.attr("data-id")){
                 if (confirm('您确认购买此条数据播放权限吗？')) {
                     $.ajax({
-                        url: maccms.path + '/index.php/user/ajax_buy_popedom.html?id=' + $that.attr("data-id") + '&sid=' + $that.attr("data-sid") + '&nid=' + $that.attr("data-nid") + '&type=' + $that.attr("data-type"),
+                        url: maccms.path + '/index.php/user/ajax_buy_popedom.html?id=' + $that.attr("data-id") + '&mid=' + $that.attr("data-mid") + '&sid=' + $that.attr("data-sid") + '&nid=' + $that.attr("data-nid") + '&type=' + $that.attr("data-type"),
                         cache: false,
                         dataType: 'json',
                         success: function ($r) {
