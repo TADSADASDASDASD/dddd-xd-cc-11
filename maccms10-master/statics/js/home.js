@@ -27,7 +27,7 @@ var MAC={
             if( $("#mac_flash_copy").get(0) ==undefined ){ $('<div id="mac_flash_copy"></div>'); } else {$('#mac_flash_copy').html(''); }
             $('#mac_flash_copy').html('<embed src='+SitePath+'"images/_clipboard.swf" FlashVars="clipboard='+escape(s)+'" width="0" height="0" type="application/x-shockwave-flash"></embed>');
         }
-        MAC.Pop.Msg(100,20,'复制成功',1000);
+        alert("复制成功")
     },
     'Home': function(o,u){
         try{
@@ -36,7 +36,7 @@ var MAC={
         catch(e){
             if(window.netscape){
                 try{netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");}
-                catch(e){ MAC.Pop.Msg(150,40,'此操作被浏览器拒绝！请手动设置',1000); }
+                catch(e){ alert("此操作被浏览器拒绝！请手动设置");}
                 var moz = Components.classes['@mozilla.org/preferences-service;1'].getService(Components.interfaces.nsIPrefBranch);
                 moz.setCharPref('browser.startup.homepage',u);
             }
@@ -45,7 +45,7 @@ var MAC={
     'Fav': function(u,s){
         try{ window.external.addFavorite(u, s);}
         catch (e){
-            try{window.sidebar.addPanel(s, u, "");}catch (e){ MAC.Pop.Msg(150,40,'加入收藏出错，请使用键盘Ctrl+D进行添加',1000); }
+            try{window.sidebar.addPanel(s, u, "");}catch (e){ alert("加入收藏出错，请使用键盘Ctrl+D进行添加"); }
         }
     },
     'Open': function(u,w,h){
@@ -228,7 +228,7 @@ var MAC={
 
                 },
                 success: function($r){
-                    MAC.Pop.Msg(100,20,$r.msg,1000);
+                	alert($r.msg)
                     if($r.code==1){
                         MAC.Score.View($r);
                     }
@@ -481,7 +481,7 @@ var MAC={
         'Portrait':'',
         'Init':function(){
             if($('.mac_user').length >0){
-                $('body').on('click', '.mac_user', function(e){
+                $('body').on('click', '.mac_user', function(e){              	
                     MAC.User.Login();
                 });              
             } 
@@ -538,7 +538,7 @@ var MAC={
                 type: 'post',
                 url: maccms.path + '/index.php/user/logout',
                 success:function($r){
-                    MAC.Pop.Msg(100,20,$r.msg,1000);
+                	alert($r.msg)
                     if($r.code == 1){
                         location.reload();
                     }
@@ -560,7 +560,7 @@ var MAC={
                         dataType: 'json',
                         success: function ($r) {
                             $that.addClass('disabled');
-                            MAC.Pop.Msg(300, 50, $r.msg, 1000);
+                            alert($r.msg)
                             if ($r.code == 1) {
                                 top.location.reload();
                             }
@@ -585,6 +585,10 @@ var MAC={
                 success:function($r){
                     $('body').append($r);
                     $($modalid).modal('show');
+                    $('.MacPlayer').hide();
+                    $($modalid).on('hide.bs.modal', function () {
+                    	$('.MacPlayer').show();
+					})
                     $callback($r);
                 }
             });
@@ -654,7 +658,7 @@ var MAC={
                         dataType: 'json',
                         success: function($r){
                             $that.addClass('disabled');
-                            MAC.Pop.Msg(100,20,$r.msg,1000);
+                            alert($r.msg)
                             if($r.code == 1){
                             }
                         }
@@ -712,15 +716,15 @@ var MAC={
         'Submit':function($o){
             var form = $o.parents('form');
             if($(form).find(".comment_content").val() == ''){
-                MAC.Pop.Msg(100,20,'请输入您的评论！',1000);
+            	alert("请输入您的评论！")
                 return false;
             }
             if($('.mac_comment').attr('data-mid') == ''){
-                MAC.Pop.Msg(100,20,'模块mid错误！',1000);
+            	alert("模块mid错误！")
                 return false;
             }
             if($('.mac_comment').attr('data-id') == ''){
-                MAC.Pop.Msg(100,20,'关联id错误！',1000);
+            	alert("关联id错误！")
                 return false;
             }
 
@@ -729,7 +733,7 @@ var MAC={
                 url: maccms.path + '/index.php/comment/saveData',
                 data: $(form).serialize() + '&comment_mid='+ $('.mac_comment').attr('data-mid') + '&comment_rid=' + $('.mac_comment').attr('data-id'),
                 success:function($r){
-                    MAC.Pop.Msg(100,20,$r.msg,1000);
+                	alert($r.msg)
                     if($r.code == 1){
                         MAC.Comment.Show(1);
                     }
