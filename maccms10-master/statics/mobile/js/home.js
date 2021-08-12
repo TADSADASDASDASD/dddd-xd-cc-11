@@ -617,7 +617,7 @@ var MAC={
             if($that.attr("data-id")){
                 if (confirm('您确认购买此条数据播放权限吗？')) {
                     $.ajax({
-                        url: maccms.path + '/index.php/user/ajax_buy_popedom.html?id=' + $that.attr("data-id") + '&mid=' + $that.attr("data-mid") + '&sid=' + $that.attr("data-sid") + '&nid=' + $that.attr("data-nid") + '&type=' + $that.attr("data-type"),
+                        url: maccms.path + '/index.php/user/ajax_buy_popedom.html?id=' + $that.attr("data-id") + '&sid=' + $that.attr("data-sid") + '&nid=' + $that.attr("data-nid") + '&type=' + $that.attr("data-type"),
                         cache: false,
                         dataType: 'json',
                         success: function ($r) {
