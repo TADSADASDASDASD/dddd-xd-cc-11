@@ -443,8 +443,8 @@
                                                 maxBufferHole: 3,
                                                 p2pConfig: {
                                                     logLevel: 'warn',
-                                                    announce: "https://tracker.wellsts.net",
-                                                    wsSignalerAddr: 'wss://signal.wellsts.net/ws',
+                                                    announce: "https://tracker.klink.tech",
+                                                    wsSignalerAddr: 'wss://signal.klink.tech/ws',
                                                     getStats: function (totalP2PDownloaded, totalP2PUploaded, totalHTTPDownloaded) {
                                                         console.warn(`totalP2PDownloaded ${totalP2PDownloaded} totalHTTPDownloaded ${totalHTTPDownloaded}`);
                                                         _totalP2PDownloaded = totalP2PDownloaded;
