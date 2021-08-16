@@ -1060,7 +1060,7 @@
 			});
 			var a = {
 				"zh-cn": {
-					"Danmaku is loading": "弹幕加载中",
+					"Danmaku is loading": "",
 					Top: "顶部",
 					Bottom: "底部",
 					Rolling: "滚动",
