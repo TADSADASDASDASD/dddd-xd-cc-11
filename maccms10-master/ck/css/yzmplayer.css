@@ -1055,7 +1055,8 @@ f .yzmplayer.yzmplayer-mobile .yzmplayer-controller .yzmplayer-icons .yzmplayer-
 
 .yzmplayer-bezel .yzmplayer-danloading {
 	position: absolute;
-	top: 50%;
+	top: 5%;
+	color: red;
 	margin-top: -7px;
 	width: 100%;
 	text-align: center;
