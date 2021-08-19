@@ -2577,7 +2577,7 @@
 							.loop.addEventListener("click", function() {
 								n.player.template.loopToggle.checked = !n.player.template.loopToggle.checked, n.player.template.loopToggle.checked ?
 									n.loop = !0 : n.loop = !1, n.hide()
-							}),  this.player.template.showDanmakuToggle.checked = this.showDanmaku, this.player.template.showDanmaku
+							}), this.player.template.showDanmaku
 							.addEventListener("click", function() {
 								n.player.template.showDanmakuToggle.checked = !n.player.template.showDanmakuToggle.checked, n.player.template
 									.showDanmakuToggle.checked ? (n.showDanmaku = !0, n.player.danmaku.show()) : (n.showDanmaku = !1, n.player
