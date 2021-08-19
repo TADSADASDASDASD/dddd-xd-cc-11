@@ -1203,9 +1203,7 @@
 								this.container.querySelector(".yzmplayer-setting-icon"), this.settingBox = this.container.querySelector(
 									".yzmplayer-setting-box"), this.mask = this.container.querySelector(".yzmplayer-mask"), this.loop =
 								this.container.querySelector(".yzmplayer-setting-loop"), this.loopToggle = this.container.querySelector(
-									".yzmplayer-setting-loop .yzmplayer-toggle-setting-input"), this.showDanmaku = this.container.querySelector(
-									".yzmplayer-setting-showdan"), this.showDanmakuToggle = this.container.querySelector(
-									".yzmplayer-showdan-setting-input"), this.unlimitDanmaku = this.container.querySelector(
+									".yzmplayer-setting-loop .yzmplayer-toggle-setting-input"), , this.unlimitDanmaku = this.container.querySelector(
 									".yzmplayer-setting-danunlimit"), this.unlimitDanmakuToggle = this.container.querySelector(
 									".yzmplayer-danunlimit-setting-input"), this.speed = this.container.querySelector(
 									".yzmplayer-setting-speed"), this.speedItem = this.container.querySelectorAll(
@@ -2579,8 +2577,7 @@
 							.loop.addEventListener("click", function() {
 								n.player.template.loopToggle.checked = !n.player.template.loopToggle.checked, n.player.template.loopToggle.checked ?
 									n.loop = !0 : n.loop = !1, n.hide()
-							}), this.showDanmaku = this.player.user.get("danmaku"), this.showDanmaku || this.player.danmaku && this.player
-							.danmaku.hide(), this.player.template.showDanmakuToggle.checked = this.showDanmaku, this.player.template.showDanmaku
+							}),  this.player.template.showDanmakuToggle.checked = this.showDanmaku, this.player.template.showDanmaku
 							.addEventListener("click", function() {
 								n.player.template.showDanmakuToggle.checked = !n.player.template.showDanmakuToggle.checked, n.player.template
 									.showDanmakuToggle.checked ? (n.showDanmaku = !0, n.player.danmaku.show()) : (n.showDanmaku = !1, n.player
