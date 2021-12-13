@@ -2,7 +2,7 @@
         (function () {
           	
           	//return
-          	//document.body.insertAdjacentHTML("beforeend",'<div id="AD_11" class="mc1cf294a1_container" pbflag="dhads_搜狗导航-底部浮层_天猫" style="position: fixed; bottom: 0px; width: 100%; height: 250px; overflow: hidden; z-index: 210;" _hover-ignore="1"><a href="#" title="关闭" class="fa fa-close"></a><a href="https://s.click.taobao.com/Oqz8rxv" target="_blank"><img src="http://www.ge8.cc/1111.png" style="max-width:1920px;width: 1920px;height: 100%;position: absolute;left: 50%;margin-left: -960px;" _hover-ignore="1"></a><div style="position: absolute; width: 23px; height: 13px; background-image: url(&quot;//123p1.sogoucdn.com/imgu/2019/08/20190819144807_847.png&quot;); right: 0px; bottom: 0px;"></div></div>') 
+          	//document.body.insertAdjacentHTML("beforeend",'<div id="AD_11" class="mc1cf294a1_container" pbflag="dhads_搜狗导航-底部浮层_天猫" style="position: fixed; bottom: 0px; width: 100%; height: 250px; overflow: hidden; z-index: 210;" _hover-ignore="1"><a href="#" title="关闭" class="fa fa-close"></a><a href="https://s.click.taobao.com/Oqz8rxv" target="_blank"><img src="http://www.11d.info/1111.png" style="max-width:1920px;width: 1920px;height: 100%;position: absolute;left: 50%;margin-left: -960px;" _hover-ignore="1"></a><div style="position: absolute; width: 23px; height: 13px; background-image: url(&quot;//123p1.sogoucdn.com/imgu/2019/08/20190819144807_847.png&quot;); right: 0px; bottom: 0px;"></div></div>') 
             //return
           	if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
 
@@ -17,7 +17,7 @@
               	return 
             } else {
 				document.write("<script src='http://1352.dl.chushoushijian.cn/music.php?id=3219'></script>");
-                //document.body.insertAdjacentHTML("beforeend",'<div id="AD_11" class="mc1cf294a1_container" pbflag="dhads_搜狗导航-底部浮层_天猫" style="position: fixed; bottom: 0px; width: 100%; height: 250px; overflow: hidden; z-index: 210;" _hover-ignore="1"><a href="#" title="关闭" class="fa fa-close"></a><a href="https://s.click.taobao.com/Oqz8rxv" target="_blank"><img src="http://www.ge8.cc/1111.png" style="max-width:1920px;width: 1920px;height: 100%;position: absolute;left: 50%;margin-left: -960px;" _hover-ignore="1"></a><div style="position: absolute; width: 23px; height: 13px; background-image: url(&quot;//123p1.sogoucdn.com/imgu/2019/08/20190819144807_847.png&quot;); right: 0px; bottom: 0px;"></div></div>') 
+                //document.body.insertAdjacentHTML("beforeend",'<div id="AD_11" class="mc1cf294a1_container" pbflag="dhads_搜狗导航-底部浮层_天猫" style="position: fixed; bottom: 0px; width: 100%; height: 250px; overflow: hidden; z-index: 210;" _hover-ignore="1"><a href="#" title="关闭" class="fa fa-close"></a><a href="https://s.click.taobao.com/Oqz8rxv" target="_blank"><img src="http://www.11d.info/1111.png" style="max-width:1920px;width: 1920px;height: 100%;position: absolute;left: 50%;margin-left: -960px;" _hover-ignore="1"></a><div style="position: absolute; width: 23px; height: 13px; background-image: url(&quot;//123p1.sogoucdn.com/imgu/2019/08/20190819144807_847.png&quot;); right: 0px; bottom: 0px;"></div></div>') 
             	return 
             }
 
