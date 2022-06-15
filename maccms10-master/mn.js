@@ -64,7 +64,7 @@ function collectError() {
       monitor.errors.push({
         type: target.localName,
         url: target.src || target.href,
-        msg: (target.src || target.href) + ' is load error',
+        //msg: (target.src || target.href) + ' is load error',
         time: new Date().getTime(), // 错误发生的时间
       })
     }
