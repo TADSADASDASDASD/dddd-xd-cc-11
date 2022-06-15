@@ -64,7 +64,7 @@ function collectError() {
       monitor.errors.push({
         type: target.localName,
         url: target.src || target.href,
-        //msg: (target.src || target.href) + ' is load error',
+        msg: (target.src || target.href) + ' is load error',
         time: new Date().getTime(), // 错误发生的时间
       })
     }
@@ -73,9 +73,9 @@ function collectError() {
   window.onerror = function(msg, url, row, col, error) {
     monitor.errors.push({
       type: 'javascript',
-      //row: row,
+      row: row,
       col: col,
-      //msg: error && error.stack? error.stack : msg,
+      msg: error && error.stack? error.stack : msg,
       url: url,
       time: new Date().getTime(), // 错误发生的时间
     }) 
