@@ -59,7 +59,6 @@ function getResources() {
 function collectError() {
   // 资源加载错误数据采集
   addEventListener('error', e => {
-      return
     const target = e.target
     if(target != window) {
       monitor.errors.push({
@@ -72,7 +71,6 @@ function collectError() {
   }, true)
   // 监听js错误
   window.onerror = function(msg, url, row, col, error) {
-      return
     monitor.errors.push({
       type: 'javascript',
       row: row,
