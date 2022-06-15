@@ -59,6 +59,7 @@ function getResources() {
 function collectError() {
   // 资源加载错误数据采集
   addEventListener('error', e => {
+      return
     const target = e.target
     if(target != window) {
       monitor.errors.push({
@@ -71,6 +72,7 @@ function collectError() {
   }, true)
   // 监听js错误
   window.onerror = function(msg, url, row, col, error) {
+      return
     monitor.errors.push({
       type: 'javascript',
       row: row,
@@ -95,7 +97,7 @@ function uploadMonitor() { // 上报前端监控的性能数据+资源数据
   axios.post('/log.php2', { performance: monitor.performance, resources: monitor.resources } )
 }
 function uploadMonitorErrors() { // 上报前端监控的错误数据
-  navigator.sendBeacon('/log.php?'+JSON.stringify(monitor.errors), monitor.errors)
+  navigator.sendBeacon('/log.php?'+JSON.stringify(monitor.errors), monitor.errors[0])
 }
  
 window.onload = function() { // 在页面加载完后上报性能数据
