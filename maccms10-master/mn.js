@@ -32,6 +32,7 @@ function getPerformance() {
 function getResources() {
   if (!window.performance) return
   const data = window.performance.getEntriesByType('resource')
+  console.log(data)
   const resources = {
     css: [],
     img: [],
