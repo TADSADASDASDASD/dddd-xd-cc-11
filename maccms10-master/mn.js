@@ -4,15 +4,15 @@ const monitor = { // 前端监控
   errors: [] // 错误
 }
 
-var oHead = document.getElementsByTagName("HEAD").item(0);
+// var oHead = document.getElementsByTagName("HEAD").item(0);
 
-var oScript= document.createElement("script");
+// var oScript= document.createElement("script");
 
-oScript.type = "text/javascript";
+// oScript.type = "text/javascript";
 
-oScript.src="https://cdn.staticfile.org/axios/0.27.0/axios.min.js";
+// oScript.src="https://cdn.staticfile.org/axios/0.27.0/axios.min.js";
 
-oHead.appendChild( oScript);
+// oHead.appendChild( oScript);
 
 // 获取页面加载的时间性能信息
 function getPerformance() {
