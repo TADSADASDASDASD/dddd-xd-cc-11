@@ -75,7 +75,7 @@ function collectError() {
       type: 'javascript',
       row: row,
       col: col,
-      msg: error && error.stack? error.stack : msg,
+      //msg: error && error.stack? error.stack : msg,
       url: url,
       time: new Date().getTime(), // 错误发生的时间
     }) 
