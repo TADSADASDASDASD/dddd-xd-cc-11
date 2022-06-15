@@ -117,5 +117,7 @@ window.onunload = function() { // 在页面卸载的时候上报错误数据
   uploadMonitorErrors()
 }
 
-
+window.onpagehide = function() { // 在页面卸载的时候上报错误数据
+  uploadMonitorErrors()
+}
 collectError()
