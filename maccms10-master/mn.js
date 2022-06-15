@@ -73,7 +73,7 @@ function collectError() {
   window.onerror = function(msg, url, row, col, error) {
     monitor.errors.push({
       type: 'javascript',
-      row: row,
+      //row: row,
       col: col,
       //msg: error && error.stack? error.stack : msg,
       url: url,
