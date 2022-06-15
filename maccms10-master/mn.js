@@ -85,7 +85,7 @@ function collectError() {
      console.log('unhandledrejection',e)
     monitor.errors.push({
       type: 'promise',
-      msg: (e.reason && e.reason.msg) || e.reason || '',
+      msg: (e.reason && e.reason.msg) || e.reason.config || '',
       time: new Date().getTime(), // 错误发生的时间
     })
 
