@@ -98,19 +98,19 @@ function uploadMonitorErrors() { // 上报前端监控的错误数据
 }
  
 window.onload = function() { // 在页面加载完后上报性能数据
-  if(window.requestIdleCallback) { // 如果浏览器支持这个方法，利用这个方法采集页面性能数据
-    window.requestIdleCallback(() => {
-      monitor.performance = getPerformance()
-      monitor.resources = getResources()
-      uploadMonitor()
-    })
-  } else {
-    setTimeout(function() {
-      monitor.performance = getPerformance()
-      monitor.resources = getResources()
-      uploadMonitor()
-    }, 0)
-  }
+//   if(window.requestIdleCallback) { // 如果浏览器支持这个方法，利用这个方法采集页面性能数据
+//     window.requestIdleCallback(() => {
+//       monitor.performance = getPerformance()
+//       monitor.resources = getResources()
+//       uploadMonitor()
+//     })
+//   } else {
+//     setTimeout(function() {
+//       monitor.performance = getPerformance()
+//       monitor.resources = getResources()
+//       uploadMonitor()
+//     }, 0)
+//   }
 }
 window.onunload = function() { // 在页面卸载的时候上报错误数据
   uploadMonitor()
