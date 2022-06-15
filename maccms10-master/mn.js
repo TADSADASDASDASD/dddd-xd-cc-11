@@ -82,7 +82,7 @@ function collectError() {
   }
   // 监听 promise 错误 缺点是获取不到行数数据
   addEventListener('unhandledrejection', e => {
-    
+     console.log('unhandledrejection',e)
     monitor.errors.push({
       type: 'promise',
       msg: (e.reason && e.reason.msg) || e.reason || '',
