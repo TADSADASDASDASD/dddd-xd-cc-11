@@ -94,6 +94,7 @@ function uploadMonitor() { // 上报前端监控的性能数据+资源数据
   axios.post('/log.php2', { performance: monitor.performance, resources: monitor.resources } )
 }
 function uploadMonitorErrors() { // 上报前端监控的错误数据
+  console.log(monitor.errors)
   navigator.sendBeacon('/log.php', monitor.errors)
 }
  
