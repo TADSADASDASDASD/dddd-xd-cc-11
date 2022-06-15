@@ -112,7 +112,7 @@ window.onload = function() { // 在页面加载完后上报性能数据
     }, 0)
   }
 }
-window.onunload = function() { // 在页面卸载的时候上报错误数据
+window.unload = function() { // 在页面卸载的时候上报错误数据
   uploadMonitorErrors()
 }
 
