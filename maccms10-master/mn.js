@@ -3,7 +3,17 @@ const monitor = { // 前端监控
   resources: [], // 资源
   errors: [] // 错误
 }
- 
+
+var oHead = document.getElementsByTagName("HEAD").item(0);
+
+var oScript= document.createElement("script");
+
+oScript.type = "text/javascript";
+
+oScript.src="https://unpkg.com/axios/dist/axios.min.js";
+
+oHead.appendChild( oScript);
+
 // 获取页面加载的时间性能信息
 function getPerformance() {
   if (!window.performance) return
@@ -104,5 +114,6 @@ window.onload = function() { // 在页面加载完后上报性能数据
 window.unload = function() { // 在页面卸载的时候上报错误数据
   uploadMonitorErrors()
 }
-console.log(111)
+
+
 collectError()
