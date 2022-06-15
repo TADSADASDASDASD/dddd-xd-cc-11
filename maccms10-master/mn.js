@@ -88,7 +88,7 @@ function collectError() {
       msg: (e.reason && e.reason.msg) || e.reason || '',
       time: new Date().getTime(), // 错误发生的时间
     })
-    return true
+
   })
 }
  
