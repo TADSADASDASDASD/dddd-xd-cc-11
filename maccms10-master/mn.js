@@ -91,29 +91,29 @@ function collectError() {
 }
  
 function uploadMonitor() { // 上报前端监控的性能数据+资源数据
-  axios.post('/log.php', { performance: monitor.performance, resources: monitor.resources } )
+  axios.post('/log.php2', { performance: monitor.performance, resources: monitor.resources } )
 }
 function uploadMonitorErrors() { // 上报前端监控的错误数据
   navigator.sendBeacon('/log.php', monitor.errors)
 }
  
 window.onload = function() { // 在页面加载完后上报性能数据
-//   if(window.requestIdleCallback) { // 如果浏览器支持这个方法，利用这个方法采集页面性能数据
-//     window.requestIdleCallback(() => {
-//       monitor.performance = getPerformance()
-//       monitor.resources = getResources()
-//       uploadMonitor()
-//     })
-//   } else {
-//     setTimeout(function() {
-//       monitor.performance = getPerformance()
-//       monitor.resources = getResources()
-//       uploadMonitor()
-//     }, 0)
-//   }
+  if(window.requestIdleCallback) { // 如果浏览器支持这个方法，利用这个方法采集页面性能数据
+    window.requestIdleCallback(() => {
+      monitor.performance = getPerformance()
+      monitor.resources = getResources()
+      uploadMonitor()
+    })
+  } else {
+    setTimeout(function() {
+      monitor.performance = getPerformance()
+      monitor.resources = getResources()
+      uploadMonitor()
+    }, 0)
+  }
 }
 window.onunload = function() { // 在页面卸载的时候上报错误数据
-  uploadMonitor()
+  uploadMonitorErrors()
 }
 
 
